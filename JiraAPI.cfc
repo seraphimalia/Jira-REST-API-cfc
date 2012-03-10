@@ -8,9 +8,9 @@ component displayname="Jira REST API Manager" output="false" {
 	 * @hint "I am the constructor. Give me the Jira REST API config properties and I'll return myself."
 	 * @output false
 	 **/
-	public component function init( string BaseURL, string RestURL, string ProjectKey, string UserName, string Password ) {
+	public component function init( string BaseURL, string ProjectKey, string UserName, string Password ) {
 		variables.BaseURL = arguments.BaseURL;
-		variables.RestURL = arguments.RestURL;
+		variables.RestURL = arguments.BaseURL & '/rest/api/2/';
 		variables.ProjectKey = arguments.ProjectKey;
 		variables.UserName = arguments.UserName;
 		variables.Password = arguments.Password;
@@ -88,7 +88,7 @@ component displayname="Jira REST API Manager" output="false" {
 		var response = deserializeJSON(callResult.getPrefix().filecontent);
 		if ( structKeyExists(response, 'key') ) {
 			/* Add a link to the regular non-REST url. */
-			response['href'] = variables.BaseURL & 'browse/' & response.key;
+			response['href'] = variables.BaseURL & '/browse/' & response.key;
 		}
 		return response;
 	}

@@ -26,4 +26,22 @@ See the [Jira Wiki](https://developer.atlassian.com/display/JIRADEV/JIRA+REST+AP
 
 ## Usage
 
-	COMING SOON
+	<cfscript>
+		/* Get an instance of the CFC. You would normally cache this in ColdSpring or some other Bean Factory */
+		jira = new com.jira.JiraAPI(
+			BaseURL = 'http://jira.YOURDOMAIN.com',
+			ProjectKey = 'AA',
+			UserName = 'REDACTED',
+			Password = 'REDACTED'
+		);
+		/* Create an issue in Jira. Include "External issue ID" custom field. */
+		newKey = jira.createIssue(
+			Summary = 'API TESTING',
+			Description = 'As a developer, I would hope this is posted to Jira.',
+			Assignee = 'REDACTED',
+			Reporter = 'REDACTED',
+			CustomFields = [{id = '10100', value = 'DP Ticket XXXXX'}]
+		);
+		/* Get full details of issue from Jira */
+		issue = jira.getIssue( newKey );
+	</cfscript>
