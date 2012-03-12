@@ -22,7 +22,7 @@ This CFC is to facilitate making calls to the Jira 5 REST API. The API allows yo
 
 ## Jira
 
-See the [Jira Wiki](https://developer.atlassian.com/display/JIRADEV/JIRA+REST+API+in+JIRA+5.0)
+See the [Jira Wiki](https://developer.atlassian.com/display/JIRADEV/JIRA+REST+API+in+JIRA+5.0) for their REST API docs.
 
 ## Usage
 
