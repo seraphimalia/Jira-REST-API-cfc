@@ -37,10 +37,20 @@ See the [Jira Wiki](https://developer.atlassian.com/display/JIRADEV/JIRA+REST+AP
 		/* Create an issue in Jira. Include "External issue ID" custom field. */
 		newKey = jira.createIssue(
 			Summary = 'API TESTING',
-			Description = 'As a developer, I would hope this is posted to Jira.',
+			Description = 'As a developer, I hope this is posted to Jira.',
 			Assignee = 'REDACTED',
 			Reporter = 'REDACTED',
-			CustomFields = [{id = '10100', value = 'DP Ticket XXXXX'}]
+			CustomFields = [{id = '10100', value = 'Ticket XXXXX'}]
+		);
+		/* Add a comment to the newly created issue. */
+		newComment = jira.createIssueComment(
+			IssueKey = newKey,
+			Body = 'I hope this note shows up. That would be awesome!'
+		);
+		/* Close the issue */
+		jira.transitionIssue(
+			IssueKey = newKey,
+			TransitionName = "Close Issue"
 		);
 		/* Get full details of issue from Jira */
 		issue = jira.getIssue( newKey );
